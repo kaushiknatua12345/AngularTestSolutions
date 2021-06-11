@@ -1,0 +1,46 @@
+<div class="container">
+
+<form name="registerForm" #registerForm="ngForm" action="">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Trainee Registration Form</h2>
+        </div>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span id="success-msg" *ngIf="message!==''"  class="alert alert-success" >{{message}}</span>
+        </div>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="traineename">Enter Trainee Name:</label>
+                <input required #traineename="ngModel" name="traineename" ngModel type="text" class="form-control">
+                <br/>
+                <span class="alert alert-danger" *ngIf="traineename.touched && traineename.invalid">*Invalid Name</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="emailid">Enter Email Id:</label>
+                <input required email #emailid="ngModel" name="emailid" ngModel type="text" class="form-control">
+                <br/>
+                <span class="alert alert-danger" *ngIf="emailid.touched && (emailid.invalid || emailid.errors['email'])">*Invalid Email Id</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+           <button class="btn btn-success" (click)="submitForm()" [disabled]="registerForm.invalid" id="submitButton">Register</button>
+        </div>
+    </div>
+</form>
+    </div>
