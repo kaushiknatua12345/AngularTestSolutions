@@ -1,0 +1,7 @@
+<h1>
+  Parent Compoent Message: {{message}}
+</h1>
+<br/>
+<h3>Child Component Called Under Prent: {{childMNessage}}</h3>   
+<br/><br/>
+<app-message [message]="message" (messageEmitter)="childMessage($event)"></app-message>

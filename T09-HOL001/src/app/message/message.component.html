@@ -1,0 +1,5 @@
+<br/>
+<h2>Parent Component Message Call: {{ message }}</h2>
+<br/>
+<input #messageField type="text" />
+<button (click)="handleButtonClick(messageField.value)">Pass Child Message</button>
