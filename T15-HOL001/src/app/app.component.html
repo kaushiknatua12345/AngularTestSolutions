@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+ <br/><br/>
+ 
+ <input id="newProduct" [(ngModel)]="newProduct" calss="ng-form"><br/><br/>
+ <button id="addProductBtn" (click)="addProduct()" class="btn btn-success">Add Product</button><br/>
+
+    <ul class="list-group">
+      <li *ngFor="let product of getProducts()"> {{ product }} </li>
+    </ul> 
+</div>
+
