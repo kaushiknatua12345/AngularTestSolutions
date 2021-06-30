@@ -1,0 +1,84 @@
+﻿@model CovidVaccinationCenterApp.Models.SearchVaccinationCentersViewModel
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search a vaccination center</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VaccineCategory, "Vaccine Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.VaccineCategory, ViewBag.VaccineCategories as SelectList, "Select Vaccine Category",
+               new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VaccineCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" id="btnSubmit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Centers != null)
+{
+    if (Model.Centers.Count > 0)
+    {
+        <table class="table" id="tblVaccinationCenters">
+            <tr>
+                <th>
+                    Vaccination Center Name
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    Contact Mobile No.
+                </th>
+            </tr>
+            @foreach (var item in Model.Centers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VaccinationCenterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactMobileNo)
+                    </td>
+                </tr>
+
+            }
+        </table>
+    }
+    else
+    {
+        <h2 id="Message">No vaccination center found with the given search criteria</h2>
+    }
+
+}
+else
+{
+    <h2 id="Message">Provide the search criteria to start looking for a vaccination center</h2>
+}
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CovidVaccinationCenterApp.Models.VaccinationCenters>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vaccination Centers</h2>
+
+@if (Model.Count() > 0)
+{
+    <table class="table" id="tblVaccinationCenters">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccinationCenterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactMobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VaccinationCenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VaccineCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactMobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h2 id="Message">No vaccination center found</h2>
+}
